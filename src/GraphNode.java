@@ -18,17 +18,18 @@ public class GraphNode {
         this.left_child = null;
         this.right_sibling = null;
         this.parent = null;
+        this.neighbors = null;
     }
 
     public int getOutDegree(){
-        return outSum;
+        return this.outSum;
     }
 
     public int getInDegree(){
-        return inSum;
+        return this.inSum;
     }
 
     public int getKey(){
-        return key;
+        return this.key;
     }
 }

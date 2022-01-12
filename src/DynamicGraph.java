@@ -41,8 +41,16 @@ public class DynamicGraph {
         this.edgeHead = newEdge;
         newEdge.to.inSum +=1;
         newEdge.from.outSum +=1;
-        newEdge.from.neighbors.next = newEdge.to;
-        newEdge.from.neighbors.prev = newEdge.from.prev;
+
+        if (newEdge.from.neighbors == null) {
+            newEdge.from.neighbors = newEdge.to;
+        }
+        else {
+            newEdge.to.next = newEdge.from.neighbors;
+            newEdge.from.neighbors.prev = newEdge.to;
+            newEdge.from.neighbors = newEdge.to;
+        }
+
         return newEdge;
     }
 
@@ -57,10 +65,16 @@ public class DynamicGraph {
             edge.prev.next = edge.next;
             edge.next.prev = edge.prev;
         }
-        edge.to.inSum -=1;
-        edge.from.outSum -=1;
-        edge.from.neighbors.next = edge.to.neighbors.next;
 
+
+        if (edge.to.inSum > 0){
+            edge.to.inSum -=1;
+        }
+        if (edge.from.outSum > 0){
+            edge.from.outSum -=1;
+        }
+                            // add delete from neighbors - search the node in o(1)!!!
+//        edge.from.neighbors.next = edge.to.neighbors.next;
     }
 
 //    public RootedTree scc(){
