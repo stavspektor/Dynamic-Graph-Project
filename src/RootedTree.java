@@ -1,4 +1,3 @@
-import java.io.DataOutput;
 import java.io.DataOutputStream;
 
 public class RootedTree {
