@@ -19,7 +19,7 @@ public class DynamicGraph {
 
     public void deleteNode(GraphNode node){
         if (node.inSum == 0 && node.outSum == 0){
-            if (node.next == null){ // might have mistakes!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            if (node.next == null){
                 node.prev.next = null;
             }
             else if (node.prev == null){
@@ -41,11 +41,13 @@ public class DynamicGraph {
         this.edgeHead = newEdge;
         newEdge.to.inSum +=1;
         newEdge.from.outSum +=1;
+        newEdge.from.neighbors.next = newEdge.to;
+        newEdge.from.neighbors.prev = newEdge.from.prev;
         return newEdge;
     }
 
     public void deleteEdge(GraphEdge edge){
-        if (edge.next == null){ // might have mistakes!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        if (edge.next == null){
             edge.prev.next = null;
         }
         else if (edge.prev == null){
@@ -57,6 +59,8 @@ public class DynamicGraph {
         }
         edge.to.inSum -=1;
         edge.from.outSum -=1;
+        edge.from.neighbors.next = edge.to.neighbors.next;
+
     }
 
 //    public RootedTree scc(){

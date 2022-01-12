@@ -4,6 +4,10 @@ public class GraphNode {
     int outSum;
     GraphNode prev;
     GraphNode next;
+    GraphNode neighbors;
+    GraphNode left_child;
+    GraphNode right_sibling;
+    GraphNode parent;
 
     public GraphNode(int key) {
         this.key = key;
@@ -11,6 +15,9 @@ public class GraphNode {
         this.next = null;
         this.inSum = 0;
         this.outSum = 0;
+        this.left_child = null;
+        this.right_sibling = null;
+        this.parent = null;
     }
 
     public int getOutDegree(){
